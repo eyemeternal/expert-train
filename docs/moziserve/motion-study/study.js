@@ -1,8 +1,8 @@
 const preview = document.querySelector('.preview');
-const themeToggle = document.querySelector('.theme-toggle');
-const systemTheme = matchMedia('(prefers-color-scheme: dark)');
+const viewButtons = [...document.querySelectorAll('[data-view]')];
 const film = document.querySelector('.hero-video');
 const source = film.querySelector('source');
+const filmToggle = document.querySelector('.film-toggle');
 const filmCredit = document.querySelector('.film-controls a');
 const rail = document.querySelector('.rail');
 const controls = document.querySelector('.rail-controls');
@@ -12,6 +12,7 @@ const desktopCredit = filmCredit.href;
 const mobileCredit = 'https://www.pexels.com/video/close-up-shot-of-insulators-in-substation-10058463/';
 const mobilePoster = 'https://images.pexels.com/videos/10058463/current-electrical-line-electricity-equipment-10058463.jpeg?auto=compress&w=1260';
 const desktopPoster = film.poster;
+let filmPausedByUser = false;
 let filmVisible = false;
 let railVisible = false;
 let touchingRail = false;
@@ -20,7 +21,7 @@ let railTimer;
 let manualRail = false;
 
 function syncFilm() {
-  if (reduceMotion.matches || film.currentTime >= 4.5 || !filmVisible || document.hidden) {
+  if (reduceMotion.matches || filmPausedByUser || !filmVisible || document.hidden) {
     film.pause();
   } else {
     film.play().catch(() => {});
@@ -38,35 +39,25 @@ function updateFilmSource() {
   syncFilm();
 }
 
-let themePreference;
-try {
-  themePreference = localStorage.getItem('moziserve-theme');
-} catch {
-  // Keep the theme available when storage is disabled.
+for (const button of viewButtons) {
+  button.addEventListener('click', () => {
+    preview.dataset.layout = button.dataset.view;
+    for (const choice of viewButtons) {
+      choice.setAttribute('aria-pressed', String(choice === button));
+    }
+    updateFilmSource();
+  });
 }
 
-function applyTheme() {
-  const dark = themePreference ? themePreference === 'dark' : systemTheme.matches;
-  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
-  themeToggle.setAttribute('aria-pressed', String(dark));
-}
-
-themeToggle.hidden = false;
-themeToggle.addEventListener('click', () => {
-  themePreference = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-  try {
-    localStorage.setItem('moziserve-theme', themePreference);
-  } catch {
-    // The selected theme still applies to this page.
-  }
-  applyTheme();
+filmToggle.hidden = false;
+filmToggle.textContent = 'Play film';
+filmToggle.addEventListener('click', () => {
+  filmPausedByUser = !film.paused;
+  if (filmPausedByUser) film.pause();
+  else film.play().catch(() => {});
 });
-systemTheme.addEventListener('change', applyTheme);
-applyTheme();
-
-film.addEventListener('timeupdate', () => {
-  if (film.currentTime >= 4.5) film.pause();
-});
+film.addEventListener('play', () => { filmToggle.textContent = 'Pause film'; });
+film.addEventListener('pause', () => { filmToggle.textContent = 'Play film'; });
 new ResizeObserver(updateFilmSource).observe(preview);
 new IntersectionObserver(([entry]) => {
   filmVisible = entry.isIntersecting;

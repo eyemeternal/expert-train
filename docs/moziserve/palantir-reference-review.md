@@ -37,4 +37,4 @@ The Pexels clip listings and licensing page were checked. Confirm suitability an
 
 ## Owner review
 
-The owner approved the motion study layout with revisions. The updated study has rounded top navigation, responsive layouts without preview controls, a dark mode switch, a shorter hero, and a text-led automatically advancing Services rail. The hero plays a short pass. Services arrows switch the rail to manual navigation for the remainder of the visit. The study no longer shows dedicated pause buttons. [Revised motion study](motion-study/index.html)
+The owner approved the original video-led homepage treatment and clarified that revisions apply only to the Our Services section. Its six services now appear in rounded text-led panels that advance horizontally. Arrows switch the rail to manual navigation, and reduced-motion viewers start in manual mode. [Motion study](motion-study/index.html)
