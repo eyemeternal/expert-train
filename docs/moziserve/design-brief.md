@@ -8,7 +8,7 @@ This direction is proposed. The existing design and published business informati
 
 ## Proposed visual direction
 
-Use generous whitespace, strong headings, readable body copy, a consistent spacing scale, and deliberate image placement. Retain the existing website colours and logo. Use the recorded CSS values and their observed roles to inform design tokens after user inspection.
+Use an editorial composition with an oversized Geist headline, generous spacing, large engineering imagery, and direct links. The proposed Services rail moves horizontally on desktop and mobile and includes pause and manual controls. [Revised build brief](codex-build-brief.md) Retain the existing website colours and logo. Use the recorded CSS values and their observed roles to inform design tokens after user inspection.
 
 Use a fluid content width, a four-column mobile grid, and a twelve-column desktop grid. Prefer CSS grid and intrinsic layout over fixed dimensions. Keep body copy at least 16px, limit paragraph width, and use clear heading levels. Use subtle transitions and respect reduced-motion preferences.
 

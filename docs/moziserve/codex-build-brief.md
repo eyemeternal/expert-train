@@ -2,35 +2,35 @@
 
 Build a professional business-to-business engineering website in `moziserve/` using the REA captures as the source of truth. Moziserve presents itself as an engineering-led partner for delivering electrical, energy, and industrial infrastructure. The site should help a technical or procurement buyer understand the company's capabilities, assess sector fit, and request a quote in one click from any page.
 
-The overall page structure has been reviewed. The horizontal **Our Services** treatment is pending inspection. Use the options below for review before implementing that component. Follow the delivery milestones and keep the client implementation separate from the reference repositories. [Delivery plan](delivery-plan.md)
+The owner rejected the earlier Services designs and Montserrat proposal. The revised editorial direction and auto-advancing **Our Services** rail are ready for owner inspection before implementation. Follow the delivery milestones and keep the client implementation separate from the reference repositories. [Delivery plan](delivery-plan.md)
 
 ## Source package
 
 - Use the five original routes `/`, `/about-us/`, `/services/`, `/faq/`, and `/contact/`. Refer to the dated screenshots, captured copy, and verified contact details when developing each page. Local raw HTML and REA JSON are under `docs/moziserve/evidence/raw/2026-11-15/` and are ignored by Git. A separate checkout may need a copy of those files. Start with the committed audit and evidence either way. [Source audit](source-audit.md) · [REA capture manifest](evidence/2026-11-15/manifest.md)
-- Keep the original logo artwork. Use the source PNG to produce web-sized derivatives with the same proportions and meaningful alternative text. Retain the exact verified palette, including `#0089E4`, `#192730`, `#FFFFFF`, `#F6F6F8`, and `#1A3446`. Preserve the rest of the source register for role mapping. Measure contrast before pairing text and surfaces. Start from the captured Montserrat typography. [Original logo](evidence/2026-11-15/header-logo-2x.png) · [Colour register](aesthetics-review.md#exact-homepage-colours)
+- Keep the original logo artwork. Use the source PNG to produce web-sized derivatives with the same proportions and meaningful alternative text. Retain the exact verified palette, including `#0089E4`, `#192730`, `#FFFFFF`, `#F6F6F8`, and `#1A3446`. Preserve the rest of the source register for role mapping. Measure contrast before pairing text and surfaces. Use Geist as the proposed replacement for Montserrat, with a system sans-serif fallback. Set headlines in semibold with tight spacing and use regular-weight body copy. [Original logo](evidence/2026-11-15/header-logo-2x.png) · [Colour register](aesthetics-review.md#exact-homepage-colours)
 
 ## Homepage and route responsibilities
 
 1. **Header.** Keep the original logo, existing navigation, and a prominent **Request a Quote** link to `/contact/#request-a-quote`. On mobile, expose the link outside the menu and keep menu focus and close behaviour predictable.
-2. **Hero.** Use the proposed heading **Electrical and energy infrastructure delivery**. Add a short explanation covering procurement through commissioning. Pair **Request a Quote** with a secondary **Explore Services** link. Use a split composition on desktop. On mobile, put the copy and actions above the media.
+2. **Hero.** Use the proposed heading **Electrical and energy infrastructure delivery**. Add a short explanation covering procurement through commissioning. Pair **Request a Quote** with a secondary **Explore Services** link. Use one large editorial headline over a deep source-colour field, with imagery weighted to the right and the copy on the left. On mobile, keep headline and actions legible independently of the crop.
 3. **Our Services.** Keep the six published capabilities in a horizontal presentation on desktop and mobile. Give each its own link to a permanent anchor on the Services page. Show an **All services** link independent of the interactive section.
 4. **Sectors and delivery.** Show the published markets and explain the proposed delivery sequence from technical planning and procurement through site delivery, integration, testing, and commissioning. Keep any explanation of the process traceable to the published offer.
 5. **Company and quality.** Introduce Moziserve's approach to quality and safety and link to the company and leadership content on About Us. Add approved proof as it becomes available.
 6. **Contact and footer.** Repeat the quote action and make the published phone and email clickable. Display the Boksburg address in text. Keep FAQ available from navigation and use native expandable questions where appropriate. [Page content and contact evidence](source-audit.md)
 
-## Horizontal Our Services options for inspection
+## Auto-advancing Our Services
 
-**Recommended · Horizontal selector and feature panel.** Show six service labels in one horizontal strip on wide screens. At narrower widths, keep the strip swipeable with visible previous and next controls. Selecting a service updates one feature panel with a plain-language description, a relevant still image when approved, and a deep link. Use short labels in the strip and the full service name in the detail panel. Make selection explicit, support keyboard navigation, and leave the visitor in control of what changes.
+Present the six published capabilities in a single horizontal rail of wide editorial panels. At desktop widths show around three panels. On mobile, show one full panel with the next partly in view. Give each panel a full service name, a short technical description, and a deep link. Keep **View all services** fixed outside the moving area.
 
-**Alternative · Horizontal image cards.** Show roughly three cards at wide widths and one full card with the next card partially visible on mobile. Each card pairs a title and one-sentence description with a relevant photo and link. Use manual arrows and touch scrolling. Keep card widths consistent and make all six services reachable. This treatment needs a coherent set of approved images.
+Advance one position approximately every five seconds while the section is visible. Provide previous, next, and a persistent Pause or Play control, plus touch scrolling. Suspend automatic movement during hover, touch, and focus within the moving rail. Respect an explicit pause until Play is chosen. Start paused for reduced-motion users and allow manual navigation without animation. Keep focus on the user's chosen control and keep automatic updates quiet for assistive technology.
 
-Both options use the same six services in the published order: Electrical Infrastructure, Integrated Energy Solutions, Industrial Project Delivery, Systems Integration, Testing & Commissioning, and Engineering-Led Procurement. Build six permanent service anchors and keep that content available with JavaScript disabled. Keep horizontal movement inside the component. Include visible focus and reduced-motion behaviour. [Published services](https://moziserve.co.za/services/)
+Preserve source order and use six permanent anchors on the Services page. The link list and full Services page must remain available with JavaScript disabled. Use the approved palette for the section, with square edges, thin dividers, compact descriptions, and restrained blue accents. [Published services](https://moziserve.co.za/services/)
 
 ## Media and movement
 
 Use a poster-first hero with one short, muted motion sequence as the proposed treatment. Open on an electrical substation, then use a close-up of switchgear or testing, with optional solar or battery storage footage where it fits. Keep the headline and quote action independent of playback. Load video after the primary content. Provide a visible pause control for any automatic loop and use the poster for reduced-motion and data-saving preferences where detectable. Keep controls usable on mobile and retain a poster if playback fails. If Moziserve supplies a narrated project film, use click-to-play with captions and a text alternative.
 
-For Our Services, use user-initiated transitions between panels or manual card movement. Preserving the original visual identity depends on the logo, typography, colour pairings, and spacing. Motion can then show equipment, field work, and project progression without competing with the quote action.
+Use Palantir as a visual reference for a strong opening statement, selective use of large imagery, short capability descriptions, and direct links into deeper information. Adapt those cues to Moziserve’s published engineering offer using its own logo, the exact captured palette, and cleared industry media. Give the hero and Services rail separate controls. [Palantir homepage](https://www.palantir.com/new-homepage/) · [Palantir Platforms](https://www.palantir.com/platforms/)
 
 ### Industry references reviewed on 2026-11-15
 
@@ -58,7 +58,7 @@ On Contact, put **Request a Quote** above the form, with an explanation of what 
 ## Acceptance checks
 
 - All five routes work and have useful page titles and descriptions. Services deep links, menu navigation, FAQ, and direct phone and email work on desktop and mobile.
-- At 360, 768, and 1440 CSS pixels, the quote action is discoverable, the service section remains horizontal, and the page itself has no horizontal overflow. Verify keyboard access, visible focus, zoom, touch controls, contrast, and reduced motion.
+- At 360, 768, and 1440 CSS pixels, the quote action is discoverable, the service section remains horizontal, and the page itself has no horizontal overflow. Verify automatic advance, persistent pause and resume, previous and next, touch, offscreen suspension, focus visibility, zoom, contrast, and reduced motion.
 - With media blocked or disabled, the hero copy and actions still work. Verify poster, pause, and fallback behaviour, and measure initial loading with the proposed media on a constrained mobile connection.
 - When the live form is ready, test valid delivery to the approved inbox, invalid inputs, a delivery failure, and duplicate submission handling on an approved test destination. Confirm the user sees success only after the service accepts the enquiry.
 - Review the final copy and media against the REA captures and approvals. Record the checks actually performed and anything awaiting access or client materials. Deliver a review preview before any production change.
