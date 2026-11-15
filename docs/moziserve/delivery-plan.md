@@ -5,8 +5,8 @@ The target is https://moziserve.co.za. Retain its existing colours. Complete the
 | Milestone | Deliverable | Status | Dependency |
 | --- | --- | --- | --- |
 | M0: Project rules | Scope, reference workflow, writing rules, and exclusions | Complete | None |
-| M1: Source capture | Page inventory, copy, assets, and viewport screenshots | Blocked on access | Reachable source or supplied export |
-| M2: Aesthetics inspection | Existing palette, visual audit, and review board | Template ready; inspection pending | M1 |
+| M1: Source capture | Page inventory, copy, assets, and viewport screenshots | Complete for the five linked public pages on 2026-11-15 | Reachable source or supplied export |
+| M2: Aesthetics inspection | Existing palette, visual audit, and review board | Source screenshots and homepage colours recorded. Proposals and user inspection pending. | M1 |
 | M3: Design tokens | Existing colours mapped to reusable tokens | Not started | M2 and user inspection |
 | M4: Component rebuild | Responsive component library and component preview | Not started | M3 |
 | M5: Page reconstruction | Verified content assembled into complete pages | Not started | M4 |

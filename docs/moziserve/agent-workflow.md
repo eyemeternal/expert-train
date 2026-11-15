@@ -10,17 +10,16 @@ Reference: [browser observation](../../rea/docs/guides/web/browser-observation.m
 
 Use `list_browser_targets` to identify an eligible page in a dedicated Chrome-family browser, `inspect_web_page` to collect structure and metadata, and `capture_web_screenshot` for viewport evidence. Use `export_evidence_bundle` to retain provenance. Keep the CDP endpoint on loopback with an explicit port. REA passive observation does not navigate pages or submit forms.
 
-Local readiness check: `node rea/scripts/rea.mjs --version` failed because Node 24.21.0 does not satisfy REA's supported runtime range. `rea/node_modules/` and `rea/dist/` are absent. No REA website capture was run. Use the project's pinned compatible toolchain before installing locked dependencies and building, rather than bypassing admission checks.
+On 2026-11-15, Node `24.22.1` and npm `11.16.0` were installed in the ignored workspace `.rea/toolchain/` directory. The Node archive passed the official SHA-256 check. `npm ci` and `npm run build:cached` completed, and `node scripts/rea.mjs --version` reported `6.9.0`. REA inspected the source pages and captured the screenshots in the [evidence manifest](evidence/2026-11-15/manifest.md).
 
-After prerequisites are available, from `rea/`:
+To use the installed toolchain from the workspace root, add both local binaries to `PATH` before running REA. Replace `9222` with the dedicated browser's actual debug port.
 
 ```sh
-npm ci
-npm run build:cached
-node scripts/rea.mjs list-browser-targets http://127.0.0.1:9222
+export PATH="$PWD/.rea/toolchain/npm/node_modules/.bin:$PWD/.rea/toolchain/node-v24.22.1-linux-x64/bin:$PATH"
+node rea/scripts/rea.mjs list-browser-targets http://127.0.0.1:9222 --json
 ```
 
-These are documented next steps, not completed commands. Consult the linked guide and command help for inspection options after selecting a target.
+For the M1 CLI run, complete per-operation JSON was saved in the ignored raw evidence directory and reviewed PNGs were promoted with their SHA-256 digests and REA evidence IDs. Consult the linked guide and command help for inspection options after selecting a target.
 
 ## Reviewed skills and agent references
 

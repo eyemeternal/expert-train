@@ -12,6 +12,6 @@ Reconstruct https://moziserve.co.za with modern components, clearer content hier
 
 ## Current status
 
-Research and project rules prepared on 2026-11-15. Source content collection is blocked by access failures. No existing page, logo, service, address, telephone number, or visual defect has been verified. No replacement website has been built or deployed.
+M1 source capture completed on 2026-11-15 for the five pages linked in the source navigation. The [capture manifest](moziserve/evidence/2026-11-15/manifest.md) records the original logo files and desktop and mobile viewport evidence. The [aesthetics review](moziserve/aesthetics-review.md) records the source colours. Annotated component proposals and user inspection are pending in M2.
 
 The redesign belongs to this workspace. `rea/website/` is REA's own website and must not become the Moziserve project.

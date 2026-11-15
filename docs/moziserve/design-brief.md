@@ -4,11 +4,11 @@
 
 Give the existing website a modern facelift through typography, spacing, composition, imagery, and navigation. Preserve verified business identity and meaning. Improve clarity and the path to contacting the business.
 
-This is a proposed direction. The existing design and business sector have not been observed.
+This direction is proposed. The existing design and published business information are recorded in the [source audit](source-audit.md) and [aesthetics review](aesthetics-review.md).
 
 ## Proposed visual direction
 
-Use a restrained editorial layout: generous whitespace, strong headings, readable body copy, a consistent spacing scale, and deliberate image placement. Retain the existing website colours. Extract exact values from source styles and computed styles, record their current roles, and reuse them as design tokens. Do not substitute a new neutral palette or accent. Preserve the existing logo. Colour values remain unknown until source evidence is available.
+Use generous whitespace, strong headings, readable body copy, a consistent spacing scale, and deliberate image placement. Retain the existing website colours and logo. Use the recorded CSS values and their observed roles to inform design tokens after user inspection.
 
 Use a fluid content width, a four-column mobile grid, and a twelve-column desktop grid. Prefer CSS grid and intrinsic layout over fixed dimensions. Keep body copy at least 16px, limit paragraph width, and use clear heading levels. Use subtle transitions and respect reduced-motion preferences.
 
