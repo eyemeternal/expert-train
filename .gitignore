@@ -1,0 +1,33 @@
+# Local reference repositories, maintained independently
+/rea/
+/everything-claude-code/
+
+# Local agent configuration and credentials
+/.agents/
+/.codex/
+/.aws/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Dependencies and generated output
+node_modules/
+dist/
+build/
+coverage/
+.playwright/
+playwright-report/
+test-results/
+*.tsbuildinfo
+
+# Local browser profiles and raw research captures
+.rea/
+.browser-profile/
+docs/moziserve/evidence/raw/
+
+# Logs and operating system files
+*.log
+.DS_Store
+Thumbs.db
