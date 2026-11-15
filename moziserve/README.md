@@ -34,3 +34,7 @@ The hero has no visible playback or attribution strip. Both source links, the il
 ## Approved company section
 
 The owner selected **A: The statement band** as the final company section. It sits immediately below Our Services with a navy background, blue accent, prominent heading and five white logo panels. Mobile uses two columns with the last logo centred. The original remote logo references remain; company identities and image rendering still need confirmation. The A/B comparison was a local design review, with no visitor analytics or traffic experiment. Publishing remains subject to separate owner authorization.
+
+## Approved partnership section
+
+The owner selected **A: The editorial list** for Why Partner With Us. It sits after the company band and before Request a Quote, retaining the captured introduction and four reasons. The white layout uses a large introduction beside numbered rows and stacks on mobile. [Source and implementation review](../docs/moziserve/why-partner-review.md)
