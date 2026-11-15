@@ -6,12 +6,16 @@ const filmCredit = document.querySelector('.film-controls a');
 const rail = document.querySelector('.rail');
 const controls = document.querySelector('.rail-controls');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
-const desktopFilm = source.src;
+const desktopFilm = source.dataset.desktop;
 const desktopCredit = filmCredit.href;
 const mobileCredit = 'https://www.pexels.com/video/close-up-shot-of-insulators-in-substation-10058463/';
 const mobilePoster = 'https://images.pexels.com/videos/10058463/current-electrical-line-electricity-equipment-10058463.jpeg?auto=compress&w=1260';
 const desktopPoster = film.poster;
+const connection = navigator.connection;
 let filmPausedByUser = false;
+let filmRequestedByUser = false;
+let filmFailed = false;
+let loadedFilm = '';
 let filmVisible = false;
 let railVisible = false;
 let touchingRail = false;
@@ -19,22 +23,49 @@ let pointerOverRail = false;
 let railTimer;
 let manualRail = false;
 
+function posterOnly() {
+  return (reduceMotion.matches || connection?.saveData) && !filmRequestedByUser;
+}
+
+function showPoster() {
+  film.hidden = true;
+  film.pause();
+}
+
+function playFilm() {
+  film.play().catch(() => {
+    showPoster();
+    filmToggle.textContent = 'Play film';
+  });
+}
+
 function syncFilm() {
-  if (reduceMotion.matches || filmPausedByUser || !filmVisible || document.hidden) {
+  if (posterOnly() || filmFailed) {
+    showPoster();
+  } else if (filmPausedByUser || !filmVisible || document.hidden) {
     film.pause();
   } else {
-    film.play().catch(() => {});
+    if (loadedFilm !== source.src) {
+      loadedFilm = source.src;
+      film.load();
+    }
+    playFilm();
   }
 }
 
 function updateFilmSource() {
   const mobile = preview.clientWidth <= 600;
   const url = mobile ? source.dataset.mobile : desktopFilm;
-  if (source.src === url) return;
-  source.src = url;
-  film.poster = mobile ? mobilePoster : desktopPoster;
+  const poster = mobile ? mobilePoster : desktopPoster;
+  film.poster = poster;
+  film.closest('.hero').style.backgroundImage = `url("${poster}")`;
   filmCredit.href = mobile ? mobileCredit : desktopCredit;
-  film.load();
+  if (source.src !== url) {
+    showPoster();
+    source.src = url;
+    filmFailed = false;
+    filmToggle.hidden = false;
+  }
   syncFilm();
 }
 
@@ -43,15 +74,28 @@ filmToggle.textContent = 'Play film';
 filmToggle.addEventListener('click', () => {
   filmPausedByUser = !film.paused;
   if (filmPausedByUser) film.pause();
-  else film.play().catch(() => {});
+  else {
+    filmRequestedByUser = true;
+    syncFilm();
+  }
 });
-film.addEventListener('play', () => { filmToggle.textContent = 'Pause film'; });
+film.addEventListener('playing', () => {
+  film.hidden = false;
+  filmToggle.textContent = 'Pause film';
+});
 film.addEventListener('pause', () => { filmToggle.textContent = 'Play film'; });
+function mediaFailed() {
+  filmFailed = true;
+  showPoster();
+  filmToggle.hidden = true;
+}
+film.addEventListener('error', mediaFailed);
+source.addEventListener('error', mediaFailed);
 new ResizeObserver(updateFilmSource).observe(preview);
 new IntersectionObserver(([entry]) => {
   filmVisible = entry.isIntersecting;
   syncFilm();
-}, { threshold: .15 }).observe(film);
+}, { threshold: .15 }).observe(film.closest('.hero'));
 
 function moveRail(direction) {
   const cards = [...rail.children];
@@ -114,6 +158,12 @@ document.addEventListener('visibilitychange', () => {
   scheduleRail();
 });
 reduceMotion.addEventListener('change', () => {
+  filmRequestedByUser = false;
   syncFilm();
   scheduleRail();
+});
+
+connection?.addEventListener('change', () => {
+  filmRequestedByUser = false;
+  syncFilm();
 });

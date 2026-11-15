@@ -67,6 +67,10 @@ Chromium loaded all five routes at 360, 768, and 1440 CSS pixels. The test check
 
 A full screen-reader, contrast across video frames, touch gesture, zoom, and production performance review remains pending. Quote delivery is currently via the visitor’s mail app or dialler. Hosting and final footage approval are open. [Local launch instructions](../../moziserve/README.md)
 
+### Follow-up pre-publish review of ce5b01a
+
+The local-only follow-up fixed three reproducible hero media-controller defects and passed 11 controller tests plus static checks across the five routes. Its browser matrix remains blocked by the session's socket restrictions and incomplete Playwright installation. Earlier browser results above were not rerun and do not validate these media changes. Owner browser and media review is still required before publishing. [Follow-up QA results](pre-publish-qa.md)
+
 ## M7: Deliver for review
 
 Publish the replacement through the selected hosting workflow and record its URL. Prepare any route redirects and a production migration checklist. Changes to the existing domain's DNS or production host require its actual configuration and appropriate deployment authorization.
