@@ -2,13 +2,10 @@ const preview = document.querySelector('.preview');
 const film = document.querySelector('.hero-video');
 const source = film.querySelector('source');
 const filmToggle = document.querySelector('.film-toggle');
-const filmCredit = document.querySelector('.film-controls a');
 const rail = document.querySelector('.rail');
 const controls = document.querySelector('.rail-controls');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const desktopFilm = source.dataset.desktop;
-const desktopCredit = filmCredit.href;
-const mobileCredit = 'https://www.pexels.com/video/close-up-shot-of-insulators-in-substation-10058463/';
 const mobilePoster = 'https://images.pexels.com/videos/10058463/current-electrical-line-electricity-equipment-10058463.jpeg?auto=compress&w=1260';
 const desktopPoster = film.poster;
 const connection = navigator.connection;
@@ -27,6 +24,11 @@ function posterOnly() {
   return (reduceMotion.matches || connection?.saveData) && !filmRequestedByUser;
 }
 
+function updateFilmControl() {
+  filmToggle.textContent = filmPausedByUser || posterOnly()
+    ? 'Enable background video' : 'Disable background video';
+}
+
 function showPoster() {
   film.hidden = true;
   film.pause();
@@ -35,11 +37,13 @@ function showPoster() {
 function playFilm() {
   film.play().catch(() => {
     showPoster();
-    filmToggle.textContent = 'Play film';
+    filmPausedByUser = true;
+    updateFilmControl();
   });
 }
 
 function syncFilm() {
+  updateFilmControl();
   if (posterOnly() || filmFailed) {
     showPoster();
   } else if (filmPausedByUser || !filmVisible || document.hidden) {
@@ -59,7 +63,6 @@ function updateFilmSource() {
   const poster = mobile ? mobilePoster : desktopPoster;
   film.poster = poster;
   film.closest('.hero').style.backgroundImage = `url("${poster}")`;
-  filmCredit.href = mobile ? mobileCredit : desktopCredit;
   if (source.src !== url) {
     showPoster();
     source.src = url;
@@ -70,10 +73,13 @@ function updateFilmSource() {
 }
 
 filmToggle.hidden = false;
-filmToggle.textContent = 'Play film';
+updateFilmControl();
 filmToggle.addEventListener('click', () => {
-  filmPausedByUser = !film.paused;
-  if (filmPausedByUser) film.pause();
+  filmPausedByUser = !(filmPausedByUser || posterOnly());
+  if (filmPausedByUser) {
+    film.pause();
+    updateFilmControl();
+  }
   else {
     filmRequestedByUser = true;
     syncFilm();
@@ -81,9 +87,9 @@ filmToggle.addEventListener('click', () => {
 });
 film.addEventListener('playing', () => {
   film.hidden = false;
-  filmToggle.textContent = 'Pause film';
+  updateFilmControl();
 });
-film.addEventListener('pause', () => { filmToggle.textContent = 'Play film'; });
+film.addEventListener('pause', updateFilmControl);
 function mediaFailed() {
   filmFailed = true;
   showPoster();

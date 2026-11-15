@@ -87,7 +87,7 @@ test('media failure restores poster and removes unusable playback control', asyn
   assert.equal(s.toggle.hidden, true);
 });
 
-test('visible desktop and mobile select their corresponding video and credit', () => {
+test('visible desktop and mobile select their corresponding video and poster', () => {
   const s = setup(); s.visible(s.film, true);
   assert.match(s.source.src, /desktop/);
   assert.equal(s.film.paused, false);
@@ -155,4 +155,16 @@ test('rail wraps in both directions without moving focus from an arrow', () => {
   s.previous.emit('click'); assert.equal(s.rail.scrollLeft, 1000);
   s.next.emit('click'); assert.equal(s.rail.scrollLeft, 0);
   assert.equal(s.document.activeElement, s.previous);
+});
+
+
+test('footer toggle disables future playback while the hero is offscreen', () => {
+  const s = setup(); s.visible(s.film, true); s.visible(s.film, false);
+  assert.equal(s.toggle.textContent, 'Disable background video');
+  s.toggle.emit('click');
+  assert.equal(s.toggle.textContent, 'Enable background video');
+  s.visible(s.film, true);
+  assert.equal(s.film.paused, true);
+  s.toggle.emit('click');
+  assert.equal(s.film.paused, false);
 });

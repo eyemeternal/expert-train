@@ -124,3 +124,9 @@ summary:focus-visible { outline:3px solid var(--blue); outline-offset:3px; }
   .interior-header nav { order:3; margin-inline-start:0; width:100%; }
   .detail-row { grid-template-columns:1fr; }
 }
+
+.hero-base { height:60px; }
+.video-info { margin-top:24px; font-size:13px; }
+.video-info summary { width:fit-content; min-height:44px; display:list-item; align-content:center; cursor:pointer; }
+.video-info p { max-width:60ch; line-height:1.5; }
+.video-info .film-controls { padding:0; flex-wrap:wrap; justify-content:flex-start; gap:8px 20px; }
