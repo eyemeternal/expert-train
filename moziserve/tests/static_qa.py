@@ -38,7 +38,16 @@ class Page(HTMLParser):
 pages = {p: Page(p) for p in ROOT.rglob('index.html')}
 for path, page in pages.items():
     assert page.h1s == 1, path
-    assert page.forms == 0, 'Unconfirmed form destination'
+    if path == ROOT / 'contact/index.html':
+        assert page.forms == 1
+        source = path.read_text()
+        assert '<form id="enquiry-composer" aria-label="Prepare an email enquiry" hidden>' in source
+        assert '<section aria-labelledby="compose-heading">' in source
+        assert 'contact-review' not in source
+        assert '<noscript>' in source
+        assert '/assets/contact.js' in source
+    else:
+        assert page.forms == 0, 'Unconfirmed form destination'
     if path != ROOT / 'index.html':
         assert 'class="rail"' not in path.read_text(), 'Horizontal rail escaped homepage services'
     assert page.quotes == ['/contact/#request-a-quote'], path
@@ -65,4 +74,4 @@ for local, captured in [('logo.png', 'header-logo-91.png'), ('site-icon.png', 's
     original = ROOT.parent / 'docs/moziserve/evidence/2026-11-15' / captured
     digest = hashlib.sha256((ROOT / 'assets' / local).read_bytes()).hexdigest()
     assert digest == hashlib.sha256(original.read_bytes()).hexdigest()
-print(f'PASS: {len(pages)} pages, local links/assets/fragments, six service anchors, quote/contact targets, no forms, original image bytes.')
+print(f'PASS: {len(pages)} pages, local links/assets/fragments, six service anchors, quote/contact targets, email composer only, original image bytes.')

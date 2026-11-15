@@ -71,3 +71,11 @@ The owner requested continuous horizontal movement rather than timed card steps.
 The owner requested a curved, more transparent homepage menu with 10 percent inner spacing and a dark-mode toggle. The header now uses rounded sides and a translucent captured-ink background. A 44-pixel theme control sits at the right of each page header; mobile places the homepage quote link on a separate row to accommodate the spacing. Dark mode is enabled by default; an explicit light/dark selection persists through local storage. The theme retains captured brand colours and original image colours.
 
 All 18 controller/theme tests pass, including saved preference restoration, accessible toggle state, invalid stored values, and blocked storage. Static checks pass on all five pages, including a single control per route and theme initialization before the stylesheet. Actual header geometry, transparency over changing video frames, theme contrast, zoom, and responsive rendering remain pending local browser inspection.
+
+## Contact comparison follow-up
+
+The dedicated contact page offers local email-first and guided-composer options. The owner chose the visitor's email app. Both target the published enquiries address and explicitly require the visitor to send the draft. All 23 controller/theme/contact tests and five-route static checks pass. Browser review was unavailable because the browser access host was unavailable; email-app launch and inbox receipt remain unverified. No test email was sent. See the [contact review](contact-review.md) for proposals, checks and limits.
+
+## Approved contact layout
+
+The owner selected B and confirmed enquiries@moziserve.co.za as the recipient. B is now the default dedicated contact page; comparison controls and A have been removed. Original project guidance remains. All 22 controller/theme/contact tests and five-route static checks pass. Browser rendering, email-app launch and inbox receipt remain unverified. The visitor must send the draft from their email app. No test email was sent.

@@ -34,7 +34,7 @@ with sync_playwright() as p:
             assert page.locator('.brand img').evaluate('(image) => image.complete && image.naturalWidth > 0')
             page.locator('.quote').click()
             assert page.url.endswith('/contact/#request-a-quote')
-            assert 'enquiries@moziserve.co.za' in page.locator('.primary-action').get_attribute('href')
+            assert 'enquiries@moziserve.co.za' in page.locator('.enquiry-details a[href^="mailto:"]').get_attribute('href')
             page.goto(BASE + route, wait_until='domcontentloaded')
             if route == '/faq/':
                 summary = page.locator('summary').first

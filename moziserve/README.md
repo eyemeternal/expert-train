@@ -24,7 +24,7 @@ Run the source and interaction checks from the workspace root:
 
 ```sh
 python3 moziserve/tests/static_qa.py
-node --test --test-isolation=none moziserve/tests/home.test.cjs moziserve/tests/theme.test.cjs
+node --test --test-isolation=none moziserve/tests/home.test.cjs moziserve/tests/theme.test.cjs moziserve/tests/contact.test.cjs
 ```
 
 The controller tests use simulated events and a deterministic clock. They do not replace browser review. With the server running at port 8766 and a working Python Playwright/Chromium installation, run `python3 moziserve/tests/browser_qa.py` for the responsive route and interaction checks. Screenshots are written to `/tmp/moziserve-qa/` for manual inspection. See the [pre-publish QA report](../docs/moziserve/pre-publish-qa.md) for actual results, environment limits, and owner review items. Keep changes local until the owner authorizes publishing.
@@ -42,3 +42,9 @@ The owner selected **A: The editorial list** for Why Partner With Us. It sits af
 ## Header and theme
 
 The homepage header uses rounded sides, 10 percent horizontal inner spacing, and a translucent background over the approved video. On narrow screens the quote action gets its own row. A sun/moon toggle sits at the right of every page header. Dark mode starts enabled and the visitor’s explicit choice is saved locally across pages. If storage is blocked, the toggle still works for the current page. JavaScript-disabled visitors retain the light theme.
+
+## Approved contact page
+
+The owner selected B, the guided enquiry composer, as the final [contact page](http://127.0.0.1:8766/contact/). Comparison controls and the unselected layout have been removed. The composer prepares an encoded email draft from the visitor's name, enquiry type, optional project location and message. Drafts always target enquiries@moziserve.co.za, retaining the published source address and the owner-selected visitor email app approach. The visitor must press Send in their email app. No backend delivery or inbox receipt is verified. The composer does not save entries to browser storage or submit them to a web service.
+
+Without JavaScript, visitors can use the email link and copy the displayed address into webmail. The original project guidance is retained: include project location, the work needed and the desired timeline. This was a local design review without conversion measurements. Actual email-app launch and sending need inspection on the owner's device.

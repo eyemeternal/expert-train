@@ -8,6 +8,7 @@
 <link rel="icon" href="/assets/site-icon.png" sizes="192x192" type="image/png">
 <script src="/assets/theme.js"></script>
 <link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/contact.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -21,31 +22,49 @@
     <svg class="theme-icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.5 14a8.5 8.5 0 0 1-10.5-10.5A8.5 8.5 0 1 0 20.5 14Z"></path></svg>
   </button>
 </header>
-<main id="main">
-  <div class="page-intro">
-    <h1>Contact</h1>
-    <p>Tell us about your electrical, energy or industrial infrastructure project.</p>
-  </div>
-  <div class="page-content">
-    <section class="detail-row" id="request-a-quote">
-      <h2>Request a Quote</h2>
-      <div>
-        <p>Include the project location, the work you need and your desired timeline.</p>
-        <div class="contact-actions">
-          <a class="primary-action" href="mailto:enquiries@moziserve.co.za?subject=Project%20quote%20request">Email your project scope</a>
-          <a href="tel:+27814893640">Call +27 81 489 3640</a>
-        </div>
+<main id="main" class="enquiry-page">
+  <section class="enquiry-layout" id="request-a-quote" aria-labelledby="contact-heading">
+    <div class="enquiry-intro">
+      <p class="enquiry-kicker">Contact Moziserve</p>
+      <h1 id="contact-heading">Let’s talk about your project.</h1>
+      <p>Share your query or tell us about the electrical, energy or industrial infrastructure work you need.</p>
+      <div class="enquiry-details">
+        <h2>Email enquiries</h2>
+        <a href="mailto:enquiries@moziserve.co.za">enquiries@moziserve.co.za</a>
+        <h2>Prefer a call?</h2>
+        <a href="tel:+27814893640">+27 81 489 3640</a>
+        <h2>Find us</h2>
+        <address>2 Sydney Road<br>Boksburg, 1459</address>
       </div>
-    </section>
-    <section class="detail-row">
-      <h2>Office</h2>
-      <address>2 Sydney Road, Boksburg, 1459<br><a href="mailto:enquiries@moziserve.co.za">enquiries@moziserve.co.za</a></address>
-    </section>
-  </div>
+    </div>
+    <div class="enquiry-panel">
+      <section aria-labelledby="compose-heading">
+        <p class="enquiry-kicker">Prepare your enquiry</p>
+        <h2 id="compose-heading">What do you need?</h2>
+        <p>Fill in the details, then review and send the draft in your email app.</p>
+        <noscript><p class="delivery-note">To send a query, <a href="mailto:enquiries@moziserve.co.za?subject=Moziserve%20enquiry">open your email app</a>. Include your name, project location, the work you need and your desired timeline, then press Send.</p></noscript>
+        <form id="enquiry-composer" aria-label="Prepare an email enquiry" hidden>
+          <label for="enquiry-name">Your name</label>
+          <input id="enquiry-name" name="name" autocomplete="name" required maxlength="100">
+          <label for="enquiry-topic">Enquiry type</label>
+          <select id="enquiry-topic" name="topic"><option>General query</option><option>Project quote</option></select>
+          <label for="enquiry-location">Project location <span>(optional)</span></label>
+          <input id="enquiry-location" name="location" autocomplete="address-level2" maxlength="160">
+          <label for="enquiry-message">Your message</label>
+          <textarea id="enquiry-message" name="message" rows="5" required maxlength="1500" aria-describedby="draft-help"></textarea>
+          <p id="draft-help" class="delivery-note">Include the scope and preferred timeline. These details are used only to prepare your email draft.</p>
+          <button class="enquiry-cta" type="submit">Open email draft <span aria-hidden="true">↗</span></button>
+          <p class="delivery-note">This opens your email app. You must press Send there to submit your enquiry.</p>
+          <p id="draft-status" role="status"></p>
+        </form>
+      </section>
+      <p class="email-fallback">Email app not opening? Copy <span>enquiries@moziserve.co.za</span> into your webmail to contact us.</p>
+    </div>
+  </section>
 </main>
 <footer class="contact">
-  <h2>Request a Quote</h2>
-  <p>Share your project scope with Moziserve.</p>
+  <h2>Engineering-led delivery.</h2>
+  <p>Electrical, energy and industrial infrastructure.</p>
   <div><a href="/contact/#request-a-quote">Contact Moziserve <span aria-hidden="true">↗</span></a><a href="tel:+27814893640">Call +27 81 489 3640</a></div>
   <nav aria-label="Footer"><a href="/">Home</a> <a href="/about-us/">About Us</a> <a href="/services/">Services</a> <a href="/faq/">FAQ</a> <a href="/contact/" aria-current="page">Contact</a></nav>
 </footer>
