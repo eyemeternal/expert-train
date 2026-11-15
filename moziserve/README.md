@@ -1,6 +1,6 @@
 # Moziserve website
 
-Five static pages reconstructed from the reviewed REA captures. The homepage uses the owner-approved motion study, including the original logo, dark video hero, original copy and responsive video selection. The horizontal, text-led Our Services rail links to the six permanent service sections. The Services page and other interior pages use ordinary document flow.
+Five static pages reconstructed from the reviewed REA captures. The homepage uses the owner-approved motion study, including the original logo, dark video hero, original copy and responsive video selection. The text-led Our Services rail glides continuously in a horizontal loop and links to the six permanent service sections. It pauses during hover, touch, or keyboard focus; arrows switch to manual navigation. Reduced-motion users get manual scrolling. The Services page and other interior pages use ordinary document flow.
 
 ## Run locally
 

@@ -9,6 +9,7 @@ const path = require('node:path');
 function setup({ reduced = false, saveData = false } = {}) {
   class Element extends EventTarget {
     constructor(values = {}) { super(); Object.assign(this, values); }
+    setAttribute(name, value) { (this.attributes ??= {})[name] = value; }
     emit(type, values = {}) {
       const event = new Event(type);
       Object.assign(event, values);
@@ -28,8 +29,15 @@ function setup({ reduced = false, saveData = false } = {}) {
   const toggle = new Element({ hidden: true });
   const credit = new Element({ href: 'desktop-credit' });
   const preview = new Element({ clientWidth: 1440 });
-  const rail = new Element({ scrollWidth: 1400, clientWidth: 400, scrollLeft: 0,
-    children: [0, 300, 600, 900, 1200, 1500].map(offsetLeft => ({ offsetLeft })) });
+  const rail = new Element({ clientWidth: 400, scrollLeft: 0, children: [] });
+  const makeCard = offsetLeft => new Element({ offsetLeft, links: [{ tabIndex: 0 }],
+    querySelectorAll() { return this.links; },
+    cloneNode() { return makeCard(0); },
+    remove() { rail.children.splice(rail.children.indexOf(this), 1); }
+  });
+  rail.children = [0, 300, 600, 900, 1200, 1500].map(makeCard);
+  rail.append = card => { card.offsetLeft = rail.children.length * 300; rail.children.push(card); };
+  Object.defineProperty(rail, 'scrollWidth', { get: () => rail.children.length * 300 });
   rail.contains = element => element === railLink;
   rail.scrollTo = options => { rail.scrollLeft = options.left; rail.lastBehavior = options.behavior; };
   const railLink = new Element();
@@ -50,7 +58,9 @@ function setup({ reduced = false, saveData = false } = {}) {
     ResizeObserver: class { constructor(callback) { resize = callback; } observe() { resize(); } },
     IntersectionObserver: class { constructor(callback) { this.callback = callback; } observe(target) { observers.set(target, this.callback); } },
     setTimeout: (callback, delay) => { timers.set(++id, { at: now + delay, callback }); return id; },
-    clearTimeout: timer => timers.delete(timer), queueMicrotask };
+    clearTimeout: timer => timers.delete(timer),
+    requestAnimationFrame: callback => { timers.set(++id, { at: now + 16, callback: () => callback(now) }); return id; },
+    cancelAnimationFrame: frame => timers.delete(frame), queueMicrotask };
   vm.runInNewContext(fs.readFileSync(path.join(__dirname, '../assets/home.js'), 'utf8'), context);
   function advance(ms) {
     const end = now + ms;
@@ -101,10 +111,11 @@ test('visible desktop and mobile select their corresponding video and poster', (
 
 test('service rail advances only while visible and arrows make it manual', () => {
   const s = setup(); s.advance(6000); assert.equal(s.rail.scrollLeft, 0);
-  s.visible(s.rail, true); s.advance(5200); assert.equal(s.rail.scrollLeft, 300);
-  s.next.emit('click'); assert.equal(s.rail.scrollLeft, 600);
-  s.advance(12000); assert.equal(s.rail.scrollLeft, 600);
-  s.previous.emit('click'); assert.equal(s.rail.scrollLeft, 300);
+  s.visible(s.rail, true); s.advance(1000);
+  assert.ok(s.rail.scrollLeft > 20 && s.rail.scrollLeft < 30);
+  s.next.emit('click'); assert.equal(s.rail.scrollLeft, 300);
+  s.advance(12000); assert.equal(s.rail.scrollLeft, 300);
+  s.previous.emit('click'); assert.equal(s.rail.scrollLeft, 0);
 });
 
 test('rail suspends for hover, touch, focus, hidden documents and offscreen sections', () => {
@@ -152,7 +163,7 @@ test('source errors show the poster, and switching videos permits recovery', () 
 
 test('rail wraps in both directions without moving focus from an arrow', () => {
   const s = setup(); s.document.activeElement = s.previous;
-  s.previous.emit('click'); assert.equal(s.rail.scrollLeft, 1000);
+  s.previous.emit('click'); assert.equal(s.rail.scrollLeft, 1400);
   s.next.emit('click'); assert.equal(s.rail.scrollLeft, 0);
   assert.equal(s.document.activeElement, s.previous);
 });
@@ -167,4 +178,28 @@ test('footer toggle disables future playback while the hero is offscreen', () =>
   assert.equal(s.film.paused, true);
   s.toggle.emit('click');
   assert.equal(s.film.paused, false);
+});
+
+
+test('continuous rail loops through presentation copies without duplicating keyboard stops', () => {
+  const s = setup(); s.visible(s.rail, true);
+  assert.equal(s.rail.children.length, 12);
+  for (const copy of s.rail.children.slice(6)) {
+    assert.equal(copy.attributes['aria-hidden'], 'true');
+    assert.equal(copy.links[0].tabIndex, -1);
+  }
+  s.advance(65000);
+  assert.ok(s.rail.scrollLeft > 0 && s.rail.scrollLeft < 30);
+  s.advance(1000);
+  assert.ok(s.rail.scrollLeft > 30 && s.rail.scrollLeft < 60);
+  s.next.emit('click');
+  assert.equal(s.rail.children.length, 6);
+});
+
+test('enabling reduced motion removes loop copies and stops continuous animation', () => {
+  const s = setup(); s.visible(s.rail, true); s.advance(2000);
+  s.motion.matches = true; s.motion.emit('change');
+  const position = s.rail.scrollLeft;
+  assert.equal(s.rail.children.length, 6);
+  s.advance(6000); assert.equal(s.rail.scrollLeft, position);
 });

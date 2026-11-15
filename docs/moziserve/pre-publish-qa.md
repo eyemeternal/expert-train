@@ -61,3 +61,7 @@ The script checks all 15 route/width combinations, takes screenshots under `/tmp
 - Measure loading on a constrained mobile connection. Confirm external media availability, licence clearance, illustrative-footage disclosure, and production delivery choices.
 - Confirm approved text and current business claims. Quote requests remain on `enquiries@moziserve.co.za` and `+27 81 489 3640`. No form or delivery-success simulation was added. Confirm a real delivery endpoint and approved testing process before adding a form.
 - Authorize publishing explicitly after browser review. This review does not clear the site for release.
+
+## Continuous Services follow-up
+
+The owner requested continuous horizontal movement rather than timed card steps. The Services rail now uses frame-based movement at 28 CSS pixels per second and presentation copies to wrap without an empty end. Scroll snapping is disabled so it cannot cancel incremental movement. Copies are hidden from assistive technology and excluded from the tab order; arrows and reduced motion remove them. Hover, touch, focus, hidden-document, and offscreen pauses remain. All 14 controller tests and the five-page static checks pass. Loop continuity is verified against simulated geometry; actual browser smoothness, touch, and assistive-technology behaviour still need local inspection.

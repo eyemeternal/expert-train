@@ -41,7 +41,8 @@ h1 { font-size:clamp(42px,6.7cqw,104px); font-weight:400; line-height:.99; lette
 .services { padding:clamp(28px,5cqw,72px) 0 24px; background:var(--mist); }
 .section-heading,.section-end { margin:0 clamp(18px,5cqw,80px); display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
 h2 { font-weight:400; font-size:clamp(35px,5.2cqw,78px); line-height:1.05; letter-spacing:-.045em; }
-.rail { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; overscroll-behavior-inline:contain; scrollbar-width:thin; padding:0 clamp(18px,5cqw,80px) 8px; scroll-padding-inline:clamp(18px,5cqw,80px); margin-top:22px; }
+.rail { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:none; overscroll-behavior-inline:contain; scrollbar-width:none; padding:0 clamp(18px,5cqw,80px) 8px; scroll-padding-inline:clamp(18px,5cqw,80px); margin-top:22px; }
+.rail::-webkit-scrollbar { display:none; }
 .feature { position:relative; flex:0 0 calc((100% - 30px) / 2.65); min-width:0; scroll-snap-align:start; display:flex; background:var(--white); color:var(--ink); border:1px solid var(--line); border-radius:18px; }
 .feature-copy { padding:clamp(20px,3cqw,38px); }
 .feature h3 { font-size:clamp(24px,2.8cqw,38px); line-height:1; letter-spacing:-.05em; font-weight:400; }

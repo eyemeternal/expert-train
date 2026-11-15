@@ -17,7 +17,11 @@ let filmVisible = false;
 let railVisible = false;
 let touchingRail = false;
 let pointerOverRail = false;
-let railTimer;
+const serviceCards = [...rail.children];
+let railCopies = [];
+let railFrame;
+let lastRailFrame = null;
+let railPosition = 0;
 let manualRail = false;
 
 function posterOnly() {
@@ -104,7 +108,7 @@ new IntersectionObserver(([entry]) => {
 }, { threshold: .15 }).observe(film.closest('.hero'));
 
 function moveRail(direction) {
-  const cards = [...rail.children];
+  const cards = serviceCards;
   const firstLeft = cards[0].offsetLeft;
   const maximum = rail.scrollWidth - rail.clientWidth;
   const stops = cards.map(card => Math.min(card.offsetLeft - firstLeft, maximum));
@@ -116,22 +120,61 @@ function moveRail(direction) {
   rail.scrollTo({ left: target, behavior: reduceMotion.matches ? 'instant' : 'smooth' });
 }
 
+function loopDistance() {
+  return railCopies.length ? railCopies[0].offsetLeft - serviceCards[0].offsetLeft : 0;
+}
+
+function addRailCopies() {
+  if (railCopies.length) return;
+  railCopies = serviceCards.map(card => {
+    const copy = card.cloneNode(true);
+    copy.setAttribute('aria-hidden', 'true');
+    for (const link of copy.querySelectorAll('a')) link.tabIndex = -1;
+    rail.append(copy);
+    return copy;
+  });
+}
+
+function removeRailCopies() {
+  if (!railCopies.length) return;
+  const distance = loopDistance();
+  const position = distance > 0 ? rail.scrollLeft % distance : rail.scrollLeft;
+  for (const copy of railCopies) copy.remove();
+  railCopies = [];
+  rail.scrollLeft = Math.min(position, rail.scrollWidth - rail.clientWidth);
+}
+
+function animateRail(time) {
+  const distance = loopDistance();
+  if (distance > 0 && lastRailFrame !== null) {
+    // Keep a fractional position so slow movement also works on rounded scroll offsets.
+    railPosition = (railPosition + Math.min(time - lastRailFrame, 64) * .028) % distance;
+    rail.scrollLeft = railPosition;
+  }
+  lastRailFrame = time;
+  railFrame = requestAnimationFrame(animateRail);
+}
+
 function scheduleRail() {
-  clearTimeout(railTimer);
-  if (manualRail || reduceMotion.matches || !railVisible || touchingRail || pointerOverRail ||
-      document.hidden || rail.contains(document.activeElement)) return;
-  railTimer = setTimeout(() => {
-    moveRail(1);
-    scheduleRail();
-  }, 5200);
+  cancelAnimationFrame(railFrame);
+  lastRailFrame = null;
+  if (manualRail || reduceMotion.matches) {
+    removeRailCopies();
+    return;
+  }
+  if (!railVisible || touchingRail || pointerOverRail || document.hidden ||
+      rail.contains(document.activeElement)) return;
+  addRailCopies();
+  railPosition = rail.scrollLeft;
+  railFrame = requestAnimationFrame(animateRail);
 }
 
 controls.hidden = false;
 for (const button of controls.querySelectorAll('[data-step]')) {
   button.addEventListener('click', () => {
     manualRail = true;
-    moveRail(Number(button.dataset.step));
     scheduleRail();
+    moveRail(Number(button.dataset.step));
   });
 }
 rail.addEventListener('pointerenter', event => {
@@ -154,7 +197,6 @@ rail.addEventListener('touchend', endTouch);
 rail.addEventListener('touchcancel', endTouch);
 rail.addEventListener('focusin', scheduleRail);
 rail.addEventListener('focusout', () => queueMicrotask(scheduleRail));
-rail.addEventListener('scrollend', scheduleRail);
 new IntersectionObserver(([entry]) => {
   railVisible = entry.isIntersecting;
   scheduleRail();
