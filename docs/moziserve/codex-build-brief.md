@@ -2,7 +2,7 @@
 
 Build a professional business-to-business engineering website in `moziserve/` using the REA captures as the source of truth. Moziserve presents itself as an engineering-led partner for delivering electrical, energy, and industrial infrastructure. The site should help a technical or procurement buyer understand the company's capabilities, assess sector fit, and request a quote in one click from any page.
 
-The owner rejected the earlier Services designs and Montserrat proposal. The revised editorial direction and auto-advancing **Our Services** rail are ready for owner inspection before implementation. Follow the delivery milestones and keep the client implementation separate from the reference repositories. [Delivery plan](delivery-plan.md)
+The owner rejected both earlier design rounds. Hold component implementation until the owner approves a revised direction. The layout and typography below document the previous concept for context. Use the live REA reference review as the basis for the next design and motion study. [Palantir reference review](palantir-reference-review.md) · [Delivery plan](delivery-plan.md)
 
 ## Source package
 

@@ -1,6 +1,6 @@
 # Aesthetics Review
 
-Source captured on 2026-11-15. The original screenshots, colour register, and layout proposal are ready for review. The revised direction is pending owner inspection. [Source capture manifest](evidence/2026-11-15/manifest.md)
+Source captured on 2026-11-15. The original screenshots, colour register, and layout proposal are ready for review. The owner rejected the prior proposals. The next treatment will use the live REA reference review. [Palantir reference review](palantir-reference-review.md) [Source capture manifest](evidence/2026-11-15/manifest.md)
 
 ## Original homepage
 
@@ -41,7 +41,7 @@ The Elementor kit separately declares `#6EC1E4`, `#54595F`, `#7A7A7A`, and `#61C
 - Desktop captures are also available for [About Us](evidence/2026-11-15/about-us-desktop.png), [Services](evidence/2026-11-15/services-desktop.png), [FAQ](evidence/2026-11-15/faq-desktop.png), and [Contact](evidence/2026-11-15/contact-desktop.png).
 - The register covers sampled homepage components and directly related source rules. Other pages, interaction states, and contrast still need review before token mapping or implementation.
 
-## Proposed direction for review
+## Previous proposal for reference
 
 Position Moziserve as an engineering-led delivery partner for electrical, energy, and industrial infrastructure. Its offer spans equipment selection and procurement, site coordination, integration, testing, and commissioning. The source names mining, manufacturing, data centres, commercial facilities, and independent power producers among its markets. The proposed homepage serves technical and procurement readers who need to establish capability, fit, and how to enquire. [Services](https://moziserve.co.za/services/) · [FAQ](https://moziserve.co.za/faq/)
 
@@ -67,4 +67,4 @@ Retain the five existing routes. Home summarises the offer. Services expands the
 
 Use the original logo, white and light grey surfaces, dark body text, and the existing blue for links and emphasis. Apply the verified footer blue and preview Geist in place of the captured Montserrat. Check text and button contrast using pairings from the existing palette. Confirm current B-BBEE documentation and permission to use partner logos, project imagery, or case studies before publishing those proof points. [Source colour register](#exact-homepage-colours)
 
-The owner rejected the earlier Services menu and typography. The new proposal combines a Palantir-inspired editorial hero with a horizontally auto-advancing Services rail. Final media selection and owner review are pending. [Codex build brief](codex-build-brief.md)
+The owner rejected this hero, typography, and Services treatment. Horizontal auto-advance is still required for Our Services. Final media and typography remain open. [Live Palantir findings](palantir-reference-review.md) [Codex build brief](codex-build-brief.md)
