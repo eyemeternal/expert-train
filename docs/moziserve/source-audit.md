@@ -42,3 +42,17 @@ These failures do not establish public downtime. These initial attempts yielded 
 On 2026-11-15, after the user confirmed the target is trusted, another web retrieval still returned an inaccessible-URL result. A local headless Chromium attempt exited with code 133 because its crash reporting process encountered a prohibited socket operation. It did not retrieve or render the page. These are execution limits, not evidence about the company or public website availability.
 
 The plugin-management skill was used to discover an alternative retrieval capability. Firecrawl was found and suggested, but is not installed or connected in this session. Its cloud retrieval has not been attempted. The user rejected the similarly named Mizoserve company; exclude that company and its domain from Moziserve research.
+
+## About Us company logos restored
+
+The owner requested restoring the source company section with the heading **Trusted by**. The local HTML captured on 2026-11-15 from https://moziserve.co.za/about-us/ contains five images under **Companies We Work With**, in this order:
+
+1. [Original logo 1](https://moziserve.co.za/wp-content/uploads/2021/03/icon-1.jpg)
+2. [Original logo 2](https://moziserve.co.za/wp-content/uploads/2021/03/icon-2.jpg)
+3. [Original logo 3](https://moziserve.co.za/wp-content/uploads/2021/03/icon-3-1.jpg)
+4. [Original logo 4](https://moziserve.co.za/wp-content/uploads/2021/03/icon-4-1.jpg)
+5. [Original logo 5](https://moziserve.co.za/wp-content/uploads/2021/03/icon-5-1.jpg)
+
+The source uses generic alt text, `icon 1` through `icon 5`, with no accompanying company names or destinations. The capture package does not contain these five image bytes, and new network requests failed. About Us now references the exact original image URLs in a static responsive grid. The heading change is owner-requested. Company identities, current relationships, logo rendering, meaningful named alternatives, and local asset copies remain for owner review. No company names or endorsements beyond the requested section heading were invented.
+
+The owner subsequently approved moving this section from About Us to a compact, static homepage strip immediately after Our Services and before Request a Quote, headed **Companies we work with**. The five original image references are retained. Desktop uses one row; mobile uses two columns with the last logo centred. The logo identities and remote image rendering remain unverified in this session.

@@ -131,3 +131,13 @@ summary:focus-visible { outline:3px solid var(--blue); outline-offset:3px; }
 .video-info summary { width:fit-content; min-height:44px; display:list-item; align-content:center; cursor:pointer; }
 .video-info p { max-width:60ch; line-height:1.5; }
 .video-info .film-controls { padding:0; flex-wrap:wrap; justify-content:flex-start; gap:8px 20px; }
+
+.trusted-section { padding:28px clamp(18px,5cqw,80px) 32px; background:var(--white); border-top:1px solid var(--line); }
+.trusted-section h2 { font-size:18px; line-height:1.4; letter-spacing:0; }
+.trusted-companies { list-style:none; padding:0; margin:20px 0 0; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); align-items:center; gap:24px; }
+.trusted-companies li { min-width:0; display:grid; place-items:center; }
+.trusted-companies img { display:block; width:100%; max-width:140px; height:64px; object-fit:contain; }
+@container (max-width:600px) {
+  .trusted-companies { grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+  .trusted-companies li:last-child { grid-column:1 / -1; }
+}
