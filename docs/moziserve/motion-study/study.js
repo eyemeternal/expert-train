@@ -1,28 +1,26 @@
 const preview = document.querySelector('.preview');
-const viewButtons = [...document.querySelectorAll('[data-view]')];
+const themeToggle = document.querySelector('.theme-toggle');
+const systemTheme = matchMedia('(prefers-color-scheme: dark)');
 const film = document.querySelector('.hero-video');
 const source = film.querySelector('source');
-const filmToggle = document.querySelector('.film-toggle');
 const filmCredit = document.querySelector('.film-controls a');
 const rail = document.querySelector('.rail');
 const controls = document.querySelector('.rail-controls');
-const railToggle = document.querySelector('.rail-toggle');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const desktopFilm = source.src;
 const desktopCredit = filmCredit.href;
 const mobileCredit = 'https://www.pexels.com/video/close-up-shot-of-insulators-in-substation-10058463/';
 const mobilePoster = 'https://images.pexels.com/videos/10058463/current-electrical-line-electricity-equipment-10058463.jpeg?auto=compress&w=1260';
 const desktopPoster = film.poster;
-let filmPausedByUser = false;
 let filmVisible = false;
-let railPaused = reduceMotion.matches;
 let railVisible = false;
 let touchingRail = false;
 let pointerOverRail = false;
 let railTimer;
+let manualRail = false;
 
 function syncFilm() {
-  if (reduceMotion.matches || filmPausedByUser || !filmVisible || document.hidden) {
+  if (reduceMotion.matches || film.currentTime >= 4.5 || !filmVisible || document.hidden) {
     film.pause();
   } else {
     film.play().catch(() => {});
@@ -40,25 +38,35 @@ function updateFilmSource() {
   syncFilm();
 }
 
-for (const button of viewButtons) {
-  button.addEventListener('click', () => {
-    preview.dataset.layout = button.dataset.view;
-    for (const choice of viewButtons) {
-      choice.setAttribute('aria-pressed', String(choice === button));
-    }
-    updateFilmSource();
-  });
+let themePreference;
+try {
+  themePreference = localStorage.getItem('moziserve-theme');
+} catch {
+  // Keep the theme available when storage is disabled.
 }
 
-filmToggle.hidden = false;
-filmToggle.textContent = 'Play film';
-filmToggle.addEventListener('click', () => {
-  filmPausedByUser = !film.paused;
-  if (filmPausedByUser) film.pause();
-  else film.play().catch(() => {});
+function applyTheme() {
+  const dark = themePreference ? themePreference === 'dark' : systemTheme.matches;
+  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  themeToggle.setAttribute('aria-pressed', String(dark));
+}
+
+themeToggle.hidden = false;
+themeToggle.addEventListener('click', () => {
+  themePreference = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  try {
+    localStorage.setItem('moziserve-theme', themePreference);
+  } catch {
+    // The selected theme still applies to this page.
+  }
+  applyTheme();
 });
-film.addEventListener('play', () => { filmToggle.textContent = 'Pause film'; });
-film.addEventListener('pause', () => { filmToggle.textContent = 'Play film'; });
+systemTheme.addEventListener('change', applyTheme);
+applyTheme();
+
+film.addEventListener('timeupdate', () => {
+  if (film.currentTime >= 4.5) film.pause();
+});
 new ResizeObserver(updateFilmSource).observe(preview);
 new IntersectionObserver(([entry]) => {
   filmVisible = entry.isIntersecting;
@@ -80,7 +88,7 @@ function moveRail(direction) {
 
 function scheduleRail() {
   clearTimeout(railTimer);
-  if (railPaused || !railVisible || touchingRail || pointerOverRail ||
+  if (manualRail || reduceMotion.matches || !railVisible || touchingRail || pointerOverRail ||
       document.hidden || rail.contains(document.activeElement)) return;
   railTimer = setTimeout(() => {
     moveRail(1);
@@ -89,14 +97,9 @@ function scheduleRail() {
 }
 
 controls.hidden = false;
-railToggle.textContent = railPaused ? 'Play' : 'Pause';
-railToggle.addEventListener('click', () => {
-  railPaused = !railPaused;
-  railToggle.textContent = railPaused ? 'Play' : 'Pause';
-  scheduleRail();
-});
 for (const button of controls.querySelectorAll('[data-step]')) {
   button.addEventListener('click', () => {
+    manualRail = true;
     moveRail(Number(button.dataset.step));
     scheduleRail();
   });
@@ -130,11 +133,7 @@ document.addEventListener('visibilitychange', () => {
   syncFilm();
   scheduleRail();
 });
-reduceMotion.addEventListener('change', event => {
-  if (event.matches) {
-    railPaused = true;
-    railToggle.textContent = 'Play';
-  }
+reduceMotion.addEventListener('change', () => {
   syncFilm();
   scheduleRail();
 });

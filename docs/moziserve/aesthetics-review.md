@@ -1,6 +1,6 @@
 # Aesthetics Review
 
-Source captured on 2026-11-15. The original screenshots, colour register, and layout proposal are ready for review. The owner rejected the prior proposals. The next treatment will use the live REA reference review. [Palantir reference review](palantir-reference-review.md) [Source capture manifest](evidence/2026-11-15/manifest.md)
+Source captured on 2026-11-15. The original screenshots, colour register, and layout proposal are ready for review. The owner approved the motion study layout with revisions to navigation, theme, copy, and Services. The previous proposal below is retained for context. [Palantir reference review](palantir-reference-review.md) [Source capture manifest](evidence/2026-11-15/manifest.md)
 
 ## Original homepage
 

@@ -34,3 +34,7 @@ Base the **Our Services** movement on the featured-story format. Give one servic
 | [Palantir AIPCon](https://www.palantir.com/aipcon) | Reference for placing longer, click-to-play films below a homepage's primary story. |
 
 The Pexels clip listings and licensing page were checked. Confirm suitability and rights for the final edit and identify stock footage as illustrative. Palantir and Eskom media are references with publication rights unverified. For the strongest sequence, request approved Moziserve footage of equipment, site coordination, and commissioning to supplement or replace illustrative shots. [Pexels licence](https://www.pexels.com/license/)
+
+## Owner review
+
+The owner approved the motion study layout with revisions. The updated study has rounded top navigation, responsive layouts without preview controls, a dark mode switch, a shorter hero, and a text-led automatically advancing Services rail. The hero plays a short pass. Services arrows switch the rail to manual navigation for the remainder of the visit. The study no longer shows dedicated pause buttons. [Revised motion study](motion-study/index.html)
