@@ -24,7 +24,7 @@ Run the source and interaction checks from the workspace root:
 
 ```sh
 python3 moziserve/tests/static_qa.py
-node --test --test-isolation=none moziserve/tests/home.test.cjs
+node --test --test-isolation=none moziserve/tests/home.test.cjs moziserve/tests/theme.test.cjs
 ```
 
 The controller tests use simulated events and a deterministic clock. They do not replace browser review. With the server running at port 8766 and a working Python Playwright/Chromium installation, run `python3 moziserve/tests/browser_qa.py` for the responsive route and interaction checks. Screenshots are written to `/tmp/moziserve-qa/` for manual inspection. See the [pre-publish QA report](../docs/moziserve/pre-publish-qa.md) for actual results, environment limits, and owner review items. Keep changes local until the owner authorizes publishing.
@@ -38,3 +38,7 @@ The owner selected **A: The statement band** as the final company section. It si
 ## Approved partnership section
 
 The owner selected **A: The editorial list** for Why Partner With Us. It sits after the company band and before Request a Quote, retaining the captured introduction and four reasons. The white layout uses a large introduction beside numbered rows and stacks on mobile. [Source and implementation review](../docs/moziserve/why-partner-review.md)
+
+## Header and theme
+
+The homepage header uses rounded sides, 10 percent horizontal inner spacing, and a translucent background over the approved video. On narrow screens the quote action gets its own row. A sun/moon toggle sits at the right of every page header. Dark mode starts enabled and the visitor’s explicit choice is saved locally across pages. If storage is blocked, the toggle still works for the current page. JavaScript-disabled visitors retain the light theme.

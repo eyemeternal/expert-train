@@ -65,3 +65,9 @@ The script checks all 15 route/width combinations, takes screenshots under `/tmp
 ## Continuous Services follow-up
 
 The owner requested continuous horizontal movement rather than timed card steps. The Services rail now uses frame-based movement at 28 CSS pixels per second and presentation copies to wrap without an empty end. Scroll snapping is disabled so it cannot cancel incremental movement. Copies are hidden from assistive technology and excluded from the tab order; arrows and reduced motion remove them. Hover, touch, focus, hidden-document, and offscreen pauses remain. All 14 controller tests and the five-page static checks pass. Loop continuity is verified against simulated geometry; actual browser smoothness, touch, and assistive-technology behaviour still need local inspection.
+
+## Header and dark-mode follow-up
+
+The owner requested a curved, more transparent homepage menu with 10 percent inner spacing and a dark-mode toggle. The header now uses rounded sides and a translucent captured-ink background. A 44-pixel theme control sits at the right of each page header; mobile places the homepage quote link on a separate row to accommodate the spacing. Dark mode is enabled by default; an explicit light/dark selection persists through local storage. The theme retains captured brand colours and original image colours.
+
+All 18 controller/theme tests pass, including saved preference restoration, accessible toggle state, invalid stored values, and blocked storage. Static checks pass on all five pages, including a single control per route and theme initialization before the stylesheet. Actual header geometry, transparency over changing video frames, theme contrast, zoom, and responsive rendering remain pending local browser inspection.
