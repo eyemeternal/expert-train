@@ -1,6 +1,6 @@
 # Aesthetics Review
 
-Source captured on 2026-11-15. The original screenshots and colour register are ready for review. Annotated component proposals and user feedback are pending. [Source capture manifest](evidence/2026-11-15/manifest.md)
+Source captured on 2026-11-15. The original screenshots, colour register, and layout proposal are ready for review. User feedback is pending. [Source capture manifest](evidence/2026-11-15/manifest.md)
 
 ## Original homepage
 
@@ -40,4 +40,29 @@ The Elementor kit separately declares `#6EC1E4`, `#54595F`, `#7A7A7A`, and `#61C
 - The homepage body and hero heading compute to Montserrat with a sans-serif fallback.
 - Desktop captures are also available for [About Us](evidence/2026-11-15/about-us-desktop.png), [Services](evidence/2026-11-15/services-desktop.png), [FAQ](evidence/2026-11-15/faq-desktop.png), and [Contact](evidence/2026-11-15/contact-desktop.png).
 - The register covers sampled homepage components and directly related source rules. Other pages, interaction states, and contrast still need review before token mapping or implementation.
-- Prepare annotated treatments for the header, hero, services, contact, and footer. Component implementation follows user inspection of the direction.
+
+## Proposed direction for review
+
+Position Moziserve as an engineering-led delivery partner for electrical, energy, and industrial infrastructure. Its offer spans equipment selection and procurement, site coordination, integration, testing, and commissioning. The source names mining, manufacturing, data centres, commercial facilities, and independent power producers among its markets. The proposed homepage serves technical and procurement readers who need to establish capability, fit, and how to enquire. [Services](https://moziserve.co.za/services/) · [FAQ](https://moziserve.co.za/faq/)
+
+**Proposed hero headline**
+
+Electrical and energy infrastructure delivery
+
+**Proposed supporting copy**
+
+Moziserve helps industrial and commercial teams deliver electrical infrastructure and integrated energy systems, from technical procurement and site coordination through testing and commissioning.
+
+| Homepage section | Desktop treatment | Mobile treatment |
+| --- | --- | --- |
+| Header | Original logo on the left, existing route links and a visible Request a Quote action on the right. | Original logo and labelled Menu button. Keep Request a Quote available in the hero. |
+| Hero | Split the headline and actions from one engineering image with confirmed usage rights. Use Request a Quote as the primary action and Explore Services as the secondary action. | Place copy and actions above the image. Keep both actions visible without relying on text over the photo crop. |
+| Core services | Show the six published capabilities in a three-column grid. Each gets a short description and a link to its section on the Services page. | Use a single-column list in the same order. |
+| Sectors served | Use a light surface and a compact list of the published markets. | Present the same markets as a short, wrapping list. |
+| How Moziserve delivers | Use four stages drawn from the published offer. Technical planning and procurement, site delivery, systems integration, then testing and commissioning. | Stack the stages in reading order. |
+| Company and quality | Add a short quality and safety statement and link to About Us, where the leadership profile can sit. Include dated credentials or named project proof once supporting material is approved. | Show the quality statement and About Us link together. |
+| Contact and footer | Close with Request a Quote, then make the published email, phone, and address easy to find. Use the existing dark footer colour. | Stack contact actions and navigation with clear tap targets. |
+
+Retain the five existing routes. Home summarises the offer. Services expands the six capabilities. About Us holds the company, leadership, and quality story. FAQ covers markets, coverage, support, and procurement. Contact holds the quote enquiry and direct contact details. The quote action can link to Contact while form delivery is verified. [Route and contact evidence](source-audit.md)
+
+Use the original logo, white and light grey surfaces, dark body text, and the existing blue for links and emphasis. Apply the verified footer blue and preserve the existing typography direction, starting with Montserrat. Check text and button contrast using pairings from the existing palette. Confirm current B-BBEE documentation and permission to use partner logos, project imagery, or case studies before publishing those proof points. [Source colour register](#exact-homepage-colours)
