@@ -30,3 +30,7 @@ node --test --test-isolation=none moziserve/tests/home.test.cjs
 The controller tests use simulated events and a deterministic clock. They do not replace browser review. With the server running at port 8766 and a working Python Playwright/Chromium installation, run `python3 moziserve/tests/browser_qa.py` for the responsive route and interaction checks. Screenshots are written to `/tmp/moziserve-qa/` for manual inspection. See the [pre-publish QA report](../docs/moziserve/pre-publish-qa.md) for actual results, environment limits, and owner review items. Keep changes local until the owner authorizes publishing.
 
 The hero has no visible playback or attribution strip. Both source links, the illustrative-footage disclosure, and a background-video toggle are available under **Video credits** in the homepage footer.
+
+## Approved company section
+
+The owner selected **A: The statement band** as the final company section. It sits immediately below Our Services with a navy background, blue accent, prominent heading and five white logo panels. Mobile uses two columns with the last logo centred. The original remote logo references remain; company identities and image rendering still need confirmation. The A/B comparison was a local design review, with no visitor analytics or traffic experiment. Publishing remains subject to separate owner authorization.
