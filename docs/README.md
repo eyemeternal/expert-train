@@ -7,6 +7,7 @@ Reconstruct https://moziserve.co.za with modern components, clearer content hier
 - [Source audit](moziserve/source-audit.md): access attempts, evidence status, and content inventory.
 - [Aesthetics review](moziserve/aesthetics-review.md): source inspection, retained colours, and user review before rebuilding.
 - [Palantir reference review](moziserve/palantir-reference-review.md) for live REA observations and a video shortlist.
+- [Desktop and mobile motion study](moziserve/motion-study/index.html) for owner review.
 - [Design brief](moziserve/design-brief.md): proposed aesthetic direction and page structure.
 - [Codex build brief](moziserve/codex-build-brief.md) for implementation handoff and horizontal Services review.
 - [Delivery plan](moziserve/delivery-plan.md): implementation stages and acceptance checks.
