@@ -6,11 +6,11 @@ The target is https://moziserve.co.za. Retain its existing colours. Complete the
 | --- | --- | --- | --- |
 | M0: Project rules | Scope, reference workflow, writing rules, and exclusions | Complete | None |
 | M1: Source capture | Page inventory, copy, assets, and viewport screenshots | Complete for the five linked public pages on 2026-11-15 | Reachable source or supplied export |
-| M2: Aesthetics inspection | Existing palette, visual audit, and review board | Source screenshots and homepage colours recorded. Proposals and user inspection pending. | M1 |
-| M3: Design tokens | Existing colours mapped to reusable tokens | Not started | M2 and user inspection |
-| M4: Component rebuild | Responsive component library and component preview | Not started | M3 |
-| M5: Page reconstruction | Verified content assembled into complete pages | Not started | M4 |
-| M6: Quality review | Responsive, accessibility, content, and interaction results | Not started | M5 |
+| M2: Aesthetics inspection | Existing palette, visual audit, and review board | Complete. Owner approved the video-led homepage with revisions confined to Our Services. | M1 |
+| M3: Design tokens | Existing colours mapped to reusable tokens | Implemented in the shared stylesheet | M2 and user inspection |
+| M4: Component rebuild | Responsive site components and motion study | Implemented | M3 |
+| M5: Page reconstruction | Verified content assembled into complete pages | Five routes implemented locally | M4 |
+| M6: Quality review | Responsive, accessibility, content, and interaction results | Browser checks recorded below. Full release review pending. | M5 |
 | M7: Delivery | Review deployment and migration checklist | Not started | M6 |
 
 ## M1: Capture the existing website
@@ -60,6 +60,12 @@ Exit condition: every retained route and business claim has a source, and comple
 Check 360, 768, and 1440 CSS pixel widths, zoom, long text, navigation, forms if present, image alternatives, keyboard focus, contrast, and reduced motion. Compare colours against the source token inventory. Check content fidelity, links, image provenance, and loading behaviour. Record actual results and remaining limits. Scan authored text for emojis and em dashes.
 
 Exit condition: material issues resolved and verification results documented, including unrun checks.
+
+### Local checks on 2026-11-15
+
+Chromium loaded all five routes at 360, 768, and 1440 CSS pixels. The test checked HTTP status, logo decoding, page width, headings and descriptions, keyboard activation of an FAQ answer, and the quote email target. Desktop and mobile selected and played their respective hero streams at 1440 and 360 pixels. The film pause button paused playback. The desktop Services rail auto-advanced, and using an arrow switched it to manual mode. All six service anchors and the homepage quote link resolved. Reduced-motion video stayed paused and the rail accepted manual input. Service and quote links were present with JavaScript disabled. The logo and icon match the reviewed PNGs byte for byte.
+
+A full screen-reader, contrast across video frames, touch gesture, zoom, and production performance review remains pending. Quote delivery is currently via the visitor’s mail app or dialler. Hosting and final footage approval are open. [Local launch instructions](../../moziserve/README.md)
 
 ## M7: Deliver for review
 
