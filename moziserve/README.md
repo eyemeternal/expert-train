@@ -31,9 +31,9 @@ The controller tests use simulated events and a deterministic clock. They do not
 
 The hero has no visible playback or attribution strip. Both source links, the illustrative-footage disclosure, and a background-video toggle are available under **Video credits** in the homepage footer.
 
-## Approved company section
+## Approved single-client section
 
-The owner selected **A: The statement band** as the final company section. It sits immediately below Our Services with a navy background, blue accent, prominent heading and five white logo panels. Mobile uses two columns with the last logo centred. The original remote logo references remain; company identities and image rendering still need confirmation. The A/B comparison was a local design review, with no visitor analytics or traffic experiment. Publishing remains subject to separate owner authorization.
+The owner selected B, the client spotlight, with A's original logo treatment. A subsequent refinement aligns Our client with Why partner with us using shared columns, heading sizes, spacing and one-pixel dividers. The right column contains a compact logo and company name. It sits after Services and before Why Partner With Us and shows AFMETCO Group as the single client. The original AFMETCO logo is stored locally with [provenance](../docs/moziserve/source-audit.md#single-client-update-on-2026-11-17). The five old logo references and comparison page are removed. This was an owner design review without measured visitor results. [Review record](../docs/moziserve/single-client-review.md)
 
 ## Approved partnership section
 
